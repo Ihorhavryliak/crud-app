@@ -9,7 +9,7 @@ import User from "../views/User";
       <Route path="/">
         <Route index element={<Home/>} />
         <Route path="users" element={<Users/>} />
-        <Route path="user" element={<User/>} />
+        <Route path="user/:id" element={<User/>} />
       </Route>
     </Routes>
   )

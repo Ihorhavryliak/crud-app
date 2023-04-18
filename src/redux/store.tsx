@@ -1,23 +1,13 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import users from "./UserRedux/UserRedux";
 
-
-const store = configureStore({
+ const store = configureStore({
   reducer: {
-
+    users,
   },
+
 });
-
-export type AppStateType = ReturnType<typeof store.getState>;
-
-export type InfersActionsTypes<T> = T extends {
-  [keys: string]: (...args: any[]) => infer U;
-}
-  ? U
-  : never;
-export type BaseThunkType<
-  A extends Action = Action,
-  R = Promise<void>
-> = ThunkAction<R, AppStateType, unknown, A>;
-export type AppDispatch = typeof store.dispatch;
-
-export default store;
+export default store
+export const useStoreDispatch = () => useDispatch<typeof store.dispatch>();
+export type RootState = ReturnType<typeof store.getState>;
