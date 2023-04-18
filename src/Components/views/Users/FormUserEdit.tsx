@@ -166,7 +166,7 @@ const FormUserEdit = (props: FormUserEditType) => {
       },
       isEdit: true,
     };
-    const parse =  JSON.parse(JSON.stringify(user))
+    const parse = JSON.parse(JSON.stringify(user));
     dispatch(updateUser([parse]));
   };
   return (
@@ -176,7 +176,6 @@ const FormUserEdit = (props: FormUserEditType) => {
         onEditUser();
       }}
     >
-      {/* name */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Name</FormLabel>
@@ -196,7 +195,6 @@ const FormUserEdit = (props: FormUserEditType) => {
         <Typography color="red">
           {nameValidation.length > 0 && nameValidation}
         </Typography>
-        {/* Username */}
       </Box>
       <Box>
         <FormControl>
@@ -218,7 +216,6 @@ const FormUserEdit = (props: FormUserEditType) => {
           {usernameValidation.length > 0 && usernameValidation}
         </Typography>
       </Box>
-      {/* email */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Email</FormLabel>
@@ -240,7 +237,6 @@ const FormUserEdit = (props: FormUserEditType) => {
           </Typography>
         </FormControl>
       </Box>
-      {/* phone */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Mobile phone</FormLabel>
@@ -263,7 +259,6 @@ const FormUserEdit = (props: FormUserEditType) => {
         </FormControl>
       </Box>
 
-      {/* site */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Site</FormLabel>
@@ -285,7 +280,6 @@ const FormUserEdit = (props: FormUserEditType) => {
         </Typography>
       </Box>
 
-      {/* company name */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Company name</FormLabel>
@@ -307,7 +301,6 @@ const FormUserEdit = (props: FormUserEditType) => {
         </Typography>
       </Box>
 
-      {/* catch phrase  */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Company catch phrase</FormLabel>
@@ -328,7 +321,7 @@ const FormUserEdit = (props: FormUserEditType) => {
           {catchPhraseValidation.length > 0 && catchPhraseValidation}
         </Typography>
       </Box>
-      {/* company bs */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Company bs</FormLabel>
@@ -350,7 +343,6 @@ const FormUserEdit = (props: FormUserEditType) => {
         </Typography>
       </Box>
 
-      {/* address Street */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Street</FormLabel>
@@ -371,7 +363,7 @@ const FormUserEdit = (props: FormUserEditType) => {
           {streetValidation.length > 0 && streetValidation}
         </Typography>
       </Box>
-      {/* address Suite */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Suite</FormLabel>
@@ -392,7 +384,7 @@ const FormUserEdit = (props: FormUserEditType) => {
           {suiteValidation.length > 0 && suiteValidation}
         </Typography>
       </Box>
-      {/* address city */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>City</FormLabel>
@@ -413,7 +405,7 @@ const FormUserEdit = (props: FormUserEditType) => {
           {cityValidation.length > 0 && cityValidation}
         </Typography>
       </Box>
-      {/* address city */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Zip code</FormLabel>
@@ -434,7 +426,7 @@ const FormUserEdit = (props: FormUserEditType) => {
           {zipCodeValidation.length > 0 && zipCodeValidation}
         </Typography>
       </Box>
-      {/* geo lat */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Geo lat</FormLabel>
@@ -455,7 +447,7 @@ const FormUserEdit = (props: FormUserEditType) => {
           {latValidation.length > 0 && latValidation}
         </Typography>
       </Box>
-      {/* geo lng */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Geo lng</FormLabel>

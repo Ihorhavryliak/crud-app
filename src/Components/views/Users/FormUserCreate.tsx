@@ -134,7 +134,7 @@ const FormUserCreate = () => {
         bs: setBs,
       },
     };
-    const parse =  JSON.parse(JSON.stringify(user))
+    const parse = JSON.parse(JSON.stringify(user));
     dispatch(createUser([parse]));
     //clean data
     setName("");
@@ -159,7 +159,6 @@ const FormUserCreate = () => {
         onCreateUser();
       }}
     >
-      {/* name */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Name</FormLabel>
@@ -179,7 +178,6 @@ const FormUserCreate = () => {
         <Typography color="red">
           {nameValidation.length > 0 && nameValidation}
         </Typography>
-        {/* Username */}
       </Box>
       <Box>
         <FormControl>
@@ -201,7 +199,7 @@ const FormUserCreate = () => {
           {usernameValidation.length > 0 && usernameValidation}
         </Typography>
       </Box>
-      {/* email */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Email</FormLabel>
@@ -223,7 +221,7 @@ const FormUserCreate = () => {
           </Typography>
         </FormControl>
       </Box>
-      {/* phone */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Mobile phone</FormLabel>
@@ -246,7 +244,6 @@ const FormUserCreate = () => {
         </FormControl>
       </Box>
 
-      {/* site */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Site</FormLabel>
@@ -268,7 +265,6 @@ const FormUserCreate = () => {
         </Typography>
       </Box>
 
-      {/* company name */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Company name</FormLabel>
@@ -290,7 +286,6 @@ const FormUserCreate = () => {
         </Typography>
       </Box>
 
-      {/* catch phrase  */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Company catch phrase</FormLabel>
@@ -311,7 +306,7 @@ const FormUserCreate = () => {
           {catchPhraseValidation.length > 0 && catchPhraseValidation}
         </Typography>
       </Box>
-      {/* company bs */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Company bs</FormLabel>
@@ -333,7 +328,6 @@ const FormUserCreate = () => {
         </Typography>
       </Box>
 
-      {/* address Street */}
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Street</FormLabel>
@@ -354,7 +348,7 @@ const FormUserCreate = () => {
           {streetValidation.length > 0 && streetValidation}
         </Typography>
       </Box>
-      {/* address Suite */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Suite</FormLabel>
@@ -375,7 +369,7 @@ const FormUserCreate = () => {
           {suiteValidation.length > 0 && suiteValidation}
         </Typography>
       </Box>
-      {/* address city */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>City</FormLabel>
@@ -396,7 +390,7 @@ const FormUserCreate = () => {
           {cityValidation.length > 0 && cityValidation}
         </Typography>
       </Box>
-      {/* address city */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Zip code</FormLabel>
@@ -417,7 +411,7 @@ const FormUserCreate = () => {
           {zipCodeValidation.length > 0 && zipCodeValidation}
         </Typography>
       </Box>
-      {/* geo lat */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Geo lat</FormLabel>
@@ -438,7 +432,7 @@ const FormUserCreate = () => {
           {latValidation.length > 0 && latValidation}
         </Typography>
       </Box>
-      {/* geo lng */}
+
       <Box>
         <FormControl>
           <FormLabel sx={{ m: 0 }}>Geo lng</FormLabel>
