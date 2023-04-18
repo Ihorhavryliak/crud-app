@@ -45,7 +45,7 @@ const Users = () => {
   };
 
   return (
-    <Container sx={{ mt: 2 }}>
+    <Container>
       <Box
         sx={{ display: "flex" }}
         alignItems={"center"}

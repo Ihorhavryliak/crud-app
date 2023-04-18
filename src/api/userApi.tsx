@@ -29,5 +29,5 @@ export type GetUserType = {
     catchPhrase: string;
     bs: string;
   };
-  isEdit?: boolean
+  isEdit?: boolean;
 };

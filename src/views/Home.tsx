@@ -4,9 +4,7 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
   return (
     <Container>
-      <Typography sx={{ mt: 2 }} variant="h2">
-        Welcome!
-      </Typography>
+      <Typography variant="h2">Welcome!</Typography>
       <Typography sx={{ mt: 2 }}>
         This CRUD application is developed using React, Redux-Toolkit and
         MaterialUI library for visualization. The application has three pages:

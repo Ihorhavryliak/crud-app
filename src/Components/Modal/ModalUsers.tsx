@@ -26,7 +26,7 @@ export const ModalUsers = (props: ModalUsersType) => {
         <ModalDialog
           aria-labelledby="modal-dialog-overflow"
           layout={layout}
-          sx={{ width: "600px", bottom: "24px" }}
+          sx={{ width: "600px", bottom: "24px", my: '20px !important' }}
         >
           <ModalClose />
           <Typography id="modal-dialog-overflow" component="h2">

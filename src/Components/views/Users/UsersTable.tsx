@@ -1,12 +1,13 @@
 import {
-  Button, Link,
+  Button,
+  Link,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Typography
+  Typography,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { ModalUsers } from "../../Modal/ModalUsers";
@@ -19,8 +20,8 @@ type UsersTableType = {
     React.SetStateAction<"center" | "fullscreen" | undefined>
   >;
   setLayout: React.Dispatch<
-  React.SetStateAction<"center" | "fullscreen" | undefined>
->;
+    React.SetStateAction<"center" | "fullscreen" | undefined>
+  >;
   onOpenEdit: (id: number) => void;
   onOpenDelete: (id: number) => void;
   onDeleteUser: (id: number) => void;
@@ -31,7 +32,16 @@ type UsersTableType = {
 };
 export const UsersTable = (props: UsersTableType) => {
   const {
-    userDataFilter,layout, setLayout,layoutTwo, setLayoutTwo, onOpenEdit, onOpenDelete, isOpenDelete, onDeleteUser, isOpenEdit,
+    userDataFilter,
+    layout,
+    setLayout,
+    layoutTwo,
+    setLayoutTwo,
+    onOpenEdit,
+    onOpenDelete,
+    isOpenDelete,
+    onDeleteUser,
+    isOpenEdit,
   } = props;
   return (
     <TableContainer>
@@ -51,9 +61,21 @@ export const UsersTable = (props: UsersTableType) => {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="left"><Typography fontFamily={row.isEdit ? 'monospace' : ''}>{row.id}</Typography> </TableCell>
-              <TableCell align="left"><Typography fontFamily={row.isEdit ? 'monospace' : ''}>{row.name}</Typography></TableCell>
-              <TableCell align="left"><Typography fontFamily={row.isEdit ? 'monospace' : ''}>{row.username}</Typography></TableCell>
+              <TableCell align="left">
+                <Typography fontFamily={row.isEdit ? "monospace" : ""}>
+                  {row.id}
+                </Typography>{" "}
+              </TableCell>
+              <TableCell align="left">
+                <Typography fontFamily={row.isEdit ? "monospace" : ""}>
+                  {row.name}
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography fontFamily={row.isEdit ? "monospace" : ""}>
+                  {row.username}
+                </Typography>
+              </TableCell>
 
               <TableCell align="right">
                 <Link component={NavLink} to={`/user/${row.id}`}>

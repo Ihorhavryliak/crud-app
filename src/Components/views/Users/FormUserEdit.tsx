@@ -145,7 +145,7 @@ const FormUserEdit = (props: FormUserEditType) => {
       id,
       name,
       username,
-     
+
       email,
       address: {
         street,
@@ -164,10 +164,9 @@ const FormUserEdit = (props: FormUserEditType) => {
         catchPhrase: catchPhrase,
         bs: setBs,
       },
-      isEdit: true
+      isEdit: true,
     };
-    const stringify = JSON.stringify(user);
-    const parse = JSON.parse(stringify);
+    const parse =  JSON.parse(JSON.stringify(user))
     dispatch(updateUser([parse]));
   };
   return (

@@ -134,8 +134,7 @@ const FormUserCreate = () => {
         bs: setBs,
       },
     };
-    const stringify = JSON.stringify(user);
-    const parse = JSON.parse(stringify);
+    const parse =  JSON.parse(JSON.stringify(user))
     dispatch(createUser([parse]));
     //clean data
     setName("");

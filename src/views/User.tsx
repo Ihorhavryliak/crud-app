@@ -2,7 +2,7 @@ import { Box, Button, Container, Divider } from "@mui/material";
 import { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useStoreDispatch } from "../redux/store";
-import { getUser, getUsers } from "../redux/UserRedux/UserRedux";
+import { getUser } from "../redux/UserRedux/UserRedux";
 import { useSelector } from "react-redux";
 import { getUserSelector } from "../redux/UserRedux/UserSelector";
 
@@ -11,30 +11,30 @@ const User = () => {
   const dispatch = useStoreDispatch();
   const userData = useSelector(getUserSelector);
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     dispatch(getUser(id));
   }, [location.pathname]);
 
-  const onNextUser = () =>{
-    const userId =  id as string
-    navigate(`/user/${ +userId + 1}`)
-  }
+  const onNextUser = () => {
+    const userId = id as string;
+    navigate(`/user/${+userId + 1}`);
+  };
 
-  const onPreviousUser = () =>{
-    const userId =  id as string
-    navigate(`/user/${ +userId - 1}`)
-  }
+  const onPreviousUser = () => {
+    const userId = id as string;
+    navigate(`/user/${+userId - 1}`);
+  };
 
   return (
     <Container>
-      <Box sx={{mb: 3}}>
-      <Button sx={{mr: 2}} variant="contained" onClick={onPreviousUser}>
-        Previous User
-      </Button>
-      <Button variant="contained" onClick={onNextUser}>
-        Next User
-      </Button>
+      <Box sx={{ mb: 3 }}>
+        <Button sx={{ mr: 2 }} variant="contained" onClick={onPreviousUser}>
+          Previous User
+        </Button>
+        <Button variant="contained" onClick={onNextUser}>
+          Next User
+        </Button>
       </Box>
       {userData.length > 0 &&
         userData.map((m) => {
