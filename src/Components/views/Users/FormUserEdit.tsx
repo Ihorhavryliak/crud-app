@@ -1,12 +1,20 @@
 import { Box, Button, Input, Typography } from "@mui/material";
-import { useState } from "react";
-import { useStoreDispatch } from "../../../redux/store";
-import { createUser } from "../../../redux/UserRedux/UserRedux";
+import { useEffect, useState } from "react";
+import { getUser, updateUser } from "../../../redux/UserRedux/UserRedux";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserSelector } from "../../../redux/UserRedux/UserSelector";
 
-const FormUserCreate = () => {
-  const dispatch = useStoreDispatch();
+type FormUserEditType = {
+  id: number;
+};
+
+const FormUserEdit = (props: FormUserEditType) => {
+  const dispatch = useDispatch();
+  const userData = useSelector(getUserSelector);
+  const { id } = props;
+
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -21,6 +29,28 @@ const FormUserCreate = () => {
   const [catchPhrase, setCatchPhrase] = useState("");
   const [bs, setBs] = useState("");
   const [site, setSite] = useState("");
+
+  useEffect(() => {
+    dispatch(getUser(id));
+  }, []);
+  useEffect(() => {
+    if (userData.length > 0) {
+      setName(userData[0].name);
+      setUsername(userData[0].username);
+      setEmail(userData[0].email);
+      setStreet(userData[0].address.street);
+      setSuite(userData[0].address.suite);
+      setCity(userData[0].address.city);
+      setZipCode(userData[0].address.zipcode);
+      setLat(userData[0].address.geo.lat);
+      setLng(userData[0].address.geo.lng);
+      setPhone(userData[0].phone);
+      setCompanyName(userData[0].company.name);
+      setCatchPhrase(userData[0].company.catchPhrase);
+      setBs(userData[0].company.bs);
+      setSite(userData[0].website);
+    }
+  }, [userData]);
 
   const [nameValidation, setNameValidationValidation] = useState("");
   const [usernameValidation, setUsernameValidation] = useState("");
@@ -52,7 +82,7 @@ const FormUserCreate = () => {
   const onBs = (text: string) => setBs(text);
   const onSite = (text: string) => setSite(text);
 
-  const onCreateUser = () => {
+  const onEditUser = () => {
     //validation
     if (name.length === 0) {
       return setNameValidationValidation("Field can not be empty");
@@ -112,9 +142,10 @@ const FormUserCreate = () => {
     setBsValidation("");
     setSiteValidation("");
     const user = {
-      id: Date.now(),
+      id,
       name,
       username,
+     
       email,
       address: {
         street,
@@ -133,31 +164,17 @@ const FormUserCreate = () => {
         catchPhrase: catchPhrase,
         bs: setBs,
       },
+      isEdit: true
     };
     const stringify = JSON.stringify(user);
     const parse = JSON.parse(stringify);
-    dispatch(createUser([parse]));
-    //clean data
-    setName("");
-    setUsername("");
-    setEmail("");
-    setStreet("");
-    setSuite("");
-    setCity("");
-    setZipCode("");
-    setLat("");
-    setLng("");
-    setPhone("");
-    setCompanyName("");
-    setCatchPhrase("");
-    setBs("");
-    setSite("");
+    dispatch(updateUser([parse]));
   };
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onCreateUser();
+        onEditUser();
       }}
     >
       {/* name */}
@@ -462,10 +479,10 @@ const FormUserCreate = () => {
       </Box>
 
       <Button type="submit" variant="contained">
-        Create
+        Save
       </Button>
     </form>
   );
 };
 
-export default FormUserCreate;
+export default FormUserEdit;

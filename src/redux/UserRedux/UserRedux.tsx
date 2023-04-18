@@ -12,8 +12,8 @@ const counterSlice = createSlice({
   reducers: {
     getUser: (state, action) => {
       const find = state.list.find((f) => f.id === +action.payload);
-      if(find){
-        state.user = [find] as GetUserType[] 
+      if (find) {
+        state.user = [find] as GetUserType[];
       }
     },
     createUser: (state, action) => {
@@ -22,12 +22,20 @@ const counterSlice = createSlice({
     deleteUser: (state, action) => {
       state.list = state.list.filter((f) => f.id !== action.payload);
     },
+    updateUser: (state, action) => {
+      console.log(action.payload[0].id);
+      state.list = state.list.map((m) => {
+        if (m.id === action.payload[0].id) {
+          return action.payload[0];
+        }
+        return m;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
       state.list = action.payload;
     });
-
   },
 });
 
@@ -36,7 +44,6 @@ export const getUsers = createAsyncThunk("getUsers", async () => {
   return response;
 });
 
-
-
-export const { getUser, deleteUser, createUser } = counterSlice.actions;
+export const { getUser, deleteUser, createUser, updateUser } =
+  counterSlice.actions;
 export default counterSlice.reducer;

@@ -1,20 +1,20 @@
-import { useState } from "react";
 import List from "@mui/joy/List";
 import Modal from "@mui/joy/Modal";
-import ModalDialog from "@mui/joy/ModalDialog";
 import ModalClose from "@mui/joy/ModalClose";
+import ModalDialog from "@mui/joy/ModalDialog";
+import ModalOverflow from "@mui/joy/ModalOverflow";
 import Typography from "@mui/joy/Typography";
-
 type ModalUsersType = {
-  setLayout: React.Dispatch<React.SetStateAction<"center" | "fullscreen" | undefined>>;
+  setLayout: React.Dispatch<
+    React.SetStateAction<"center" | "fullscreen" | undefined>
+  >;
   layout: "center" | "fullscreen" | undefined;
   children: JSX.Element;
+  h: string;
 };
 
-
 export const ModalUsers = (props: ModalUsersType) => {
-  const { children, setLayout, layout } = props;
-  const [scroll, setScroll] = useState<boolean>(true);
+  const { children, setLayout, layout, h } = props;
   return (
     <Modal
       open={!!layout}
@@ -22,26 +22,20 @@ export const ModalUsers = (props: ModalUsersType) => {
         setLayout(undefined);
       }}
     >
-      <ModalDialog
-        aria-labelledby="dialog-vertical-scroll-title"
-        layout={layout}
-        style={{ width: "600px" }}
-      >
-        <ModalClose />
-        <Typography id="dialog-vertical-scroll-title" component="h2">
-          Create user
-        </Typography>
-
-        <List
-          sx={{
-            overflow: scroll ? "scroll" : "initial",
-            mx: "calc(-1 * var(--ModalDialog-padding))",
-            px: "var(--ModalDialog-padding)",
-          }}
+      <ModalOverflow>
+        <ModalDialog
+          aria-labelledby="modal-dialog-overflow"
+          layout={layout}
+          sx={{ width: "600px", bottom: "24px" }}
         >
-          {children}
-        </List>
-      </ModalDialog>
+          <ModalClose />
+          <Typography id="modal-dialog-overflow" component="h2">
+            {h}
+          </Typography>
+
+          <List>{children}</List>
+        </ModalDialog>
+      </ModalOverflow>
     </Modal>
   );
 };
