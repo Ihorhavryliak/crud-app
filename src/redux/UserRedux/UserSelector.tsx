@@ -7,3 +7,8 @@ export const getUsersSelector = (state: RootState) => {
 export const getUserSelector = (state: RootState) => {
   return state.users.user;
 };
+
+
+export const getPageIdSelector = (state: RootState) => {
+  return state.users.pageId;
+};

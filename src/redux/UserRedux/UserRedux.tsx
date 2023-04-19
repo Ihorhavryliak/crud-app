@@ -1,9 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GetUserType, userAPI } from "../../api/userApi";
 
+type PageType = {previousPageId: number, nextPageId: number}
+
 const initialState = {
   user: [] as GetUserType[],
   list: [] as GetUserType[],
+  pageId: {
+    previousPageId: 0,
+    nextPageId: 1
+  } as PageType
 };
 
 const counterSlice = createSlice({
@@ -11,6 +17,15 @@ const counterSlice = createSlice({
   initialState,
   reducers: {
     getUser: (state, action) => {
+      const index = state.list.findIndex(x => x.id === +action.payload);
+      const previousPageId = state.list[index - 1]
+      if(previousPageId){
+        state.pageId.previousPageId = previousPageId.id
+      }
+      const nextPageId = state.list[index + 1]
+      if(nextPageId){
+        state.pageId.nextPageId = nextPageId.id
+      }
       const find = state.list.find((f) => f.id === +action.payload);
       if (find) {
         state.user = [find] as GetUserType[];

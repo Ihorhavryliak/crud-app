@@ -4,12 +4,17 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useStoreDispatch } from "../redux/store";
 import { getUser } from "../redux/UserRedux/UserRedux";
 import { useSelector } from "react-redux";
-import { getUserSelector } from "../redux/UserRedux/UserSelector";
+import {
+  getPageIdSelector,
+  getUserSelector,
+} from "../redux/UserRedux/UserSelector";
 
 const User = () => {
   const { id } = useParams();
   const dispatch = useStoreDispatch();
   const userData = useSelector(getUserSelector);
+  const pageId = useSelector(getPageIdSelector);
+
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -17,13 +22,11 @@ const User = () => {
   }, [location.pathname]);
 
   const onNextUser = () => {
-    const userId = id as string;
-    navigate(`/user/${+userId + 1}`);
+    navigate(`/user/${pageId.nextPageId}`);
   };
 
   const onPreviousUser = () => {
-    const userId = id as string;
-    navigate(`/user/${+userId - 1}`);
+    navigate(`/user/${pageId.previousPageId}`);
   };
 
   return (
