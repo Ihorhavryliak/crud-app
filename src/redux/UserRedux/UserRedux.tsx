@@ -16,34 +16,82 @@ const counterSlice = createSlice({
         state.user = [find] as GetUserType[];
       }
     },
-    createUser: (state, action) => {
-      state.list = [...state.list, action.payload[0]];
-    },
-    deleteUser: (state, action) => {
-      state.list = state.list.filter((f) => f.id !== action.payload);
-    },
-    updateUser: (state, action) => {
-      console.log(action.payload[0].id);
-      state.list = state.list.map((m) => {
-        if (m.id === action.payload[0].id) {
-          return action.payload[0];
-        }
-        return m;
-      });
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
-      state.list = action.payload;
+      state.list = action.payload as GetUserType[];
+    });
+    builder.addCase(deleteUsers.fulfilled, (state, action) => {
+      state.list = state.list.filter((f) => f.id !== action.payload);
+    });
+    builder.addCase(updateUsers.fulfilled, (state, action) => {
+      const actionPayload = action.payload as GetUserType[];
+      state.list = state.list.map((m) => {
+        if (m.id === actionPayload[0].id) {
+          return actionPayload[0];
+        }
+        return m;
+      });
+    });
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      const actionPayload = action.payload as GetUserType;
+      state.list = [...state.list, actionPayload];
     });
   },
 });
 
 export const getUsers = createAsyncThunk("getUsers", async () => {
-  const response = await userAPI.getUsers();
-  return response;
+  try {
+    const response = await userAPI.getUsersDB();
+    if (response) {
+      return response;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-export const { getUser, deleteUser, createUser, updateUser } =
-  counterSlice.actions;
+export const deleteUsers = createAsyncThunk(
+  "deleteUsers",
+  async (id: number) => {
+    try {
+      const response = await userAPI.deleteUsersDB(id);
+      if (response) {
+        return id;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const updateUsers = createAsyncThunk(
+  "updateUsers",
+  async (userData: GetUserType) => {
+    try {
+      const response = await userAPI.updateUsersDB(userData);
+      if (response) {
+        return [userData];
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const createUser = createAsyncThunk(
+  "createUser",
+  async (userData: GetUserType) => {
+    try {
+      const response = await userAPI.createUserDB(userData);
+      if (response) {
+        return userData;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const { getUser } = counterSlice.actions;
 export default counterSlice.reducer;

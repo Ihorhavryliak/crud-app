@@ -1,7 +1,7 @@
 import { Box, Button, Container, Input } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useStoreDispatch } from "../redux/store";
-import { deleteUser, getUsers } from "../redux/UserRedux/UserRedux";
+import { deleteUsers, getUsers } from "../redux/UserRedux/UserRedux";
 import { useSelector } from "react-redux";
 import { getUsersSelector } from "../redux/UserRedux/UserSelector";
 import FormControl from "@mui/joy/FormControl";
@@ -41,7 +41,7 @@ const Users = () => {
     f.name.toLowerCase().includes(searchField.toLowerCase())
   );
   const onDeleteUser = (id: number) => {
-    dispatch(deleteUser(id));
+    dispatch(deleteUsers(id));
   };
 
   return (

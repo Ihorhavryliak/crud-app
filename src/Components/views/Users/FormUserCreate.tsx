@@ -1,9 +1,9 @@
 import { Box, Button, Input, Typography } from "@mui/material";
 import { useState } from "react";
 import { useStoreDispatch } from "../../../redux/store";
-import { createUser } from "../../../redux/UserRedux/UserRedux";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
+import { createUser } from "../../../redux/UserRedux/UserRedux";
 
 const FormUserCreate = () => {
   const dispatch = useStoreDispatch();
@@ -131,11 +131,11 @@ const FormUserCreate = () => {
       company: {
         name: companyName,
         catchPhrase: catchPhrase,
-        bs: setBs,
+        bs,
       },
     };
     const parse = JSON.parse(JSON.stringify(user));
-    dispatch(createUser([parse]));
+    dispatch(createUser(parse));
     //clean data
     setName("");
     setUsername("");

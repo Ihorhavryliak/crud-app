@@ -1,17 +1,18 @@
 import { Box, Button, Input, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getUser, updateUser } from "../../../redux/UserRedux/UserRedux";
+import { getUser, updateUsers } from "../../../redux/UserRedux/UserRedux";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getUserSelector } from "../../../redux/UserRedux/UserSelector";
+import { useStoreDispatch } from "../../../redux/store";
 
 type FormUserEditType = {
   id: number;
 };
 
 const FormUserEdit = (props: FormUserEditType) => {
-  const dispatch = useDispatch();
+  const dispatch = useStoreDispatch();
   const userData = useSelector(getUserSelector);
   const { id } = props;
 
@@ -162,12 +163,12 @@ const FormUserEdit = (props: FormUserEditType) => {
       company: {
         name: companyName,
         catchPhrase: catchPhrase,
-        bs: setBs,
+        bs,
       },
       isEdit: true,
     };
     const parse = JSON.parse(JSON.stringify(user));
-    dispatch(updateUser([parse]));
+    dispatch(updateUsers(parse));
   };
   return (
     <form
